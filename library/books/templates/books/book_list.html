@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست کتاب‌ها</title>
+</head>
+<body>
+    <h1>لیست کتاب‌ها</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} توسط {{ book.author.name }}
+                <a href="{% url 'edit_book' book.pk %}">ویرایش</a>
+                <a href="{% url 'delete_book' book.pk %}">حذف</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_book' %}">افزودن کتاب جدید</a>
+    <form method="get" action="{% url 'search_books' %}">
+        <input type="text" name="q" placeholder="جستجو...">
+        <button type="submit">جستجو</button>
+    </form>
+</body>
+</html>
